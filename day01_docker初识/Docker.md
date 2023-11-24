@@ -298,6 +298,24 @@ docker exec -it name /bin/bash
 ctrl+d
 ```
 
+## 8 重命名
+
+```
+docker rename id newname
+```
+
+### 9 容器详细
+
+```
+docker inspect id
+```
+
+### 10 容器端口
+
+```
+docker port id
+```
+
 # 四 基于容器创建镜像
 
 ## 1 创建
@@ -319,5 +337,39 @@ import可以重新指定镜像的名字，load不可以
 export 与 保存 save 的区别：
 1、export导出的镜像文件大小，小于 save保存的镜像。
 2、export 导出（import导入）是根据容器拿到的镜像，再导入时会丢失镜像所有的历史。
+```
+
+# 五 数据管理
+
+**数据卷**
+
+就是将宿主机的某个目录，映射到容器中，作为数据存储的目录，我们就可以在宿主机对数据进行存储 
+
+数据卷（Data Volumes）：容器内数据直接映射到本地主机环境 
+
+**数据卷特性** 
+
+1、数据卷可以在容器之间共享和重用，本地与容器间传递数据更高效； 
+
+2、对数据卷的修改会立马有效，容器内部与本地目录均可； 
+
+3、对数据卷的更新，不会影响镜像，对数据与应用进行了解耦操作； 
+
+4、卷会一直存在，直到没有容器使用dock
+
+## 1数据卷实践 之 目录
+
+```
+docker run -itd --name tmp-ubuntu -v C:\Users\qjy\Desktop\tmp\:/tt ubuntu
+```
+
+![1700866296006](assets/1700866296006.png)
+
+![1700866735386](assets/1700866735386.png)
+
+## 2 数据卷实践 之 文件(不推荐)
+
+```
+docker run -itd --name test2 -v /home/itcast/tmp/file1.txt:/nihao/nihao.sh ubuntu
 ```
 
