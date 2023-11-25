@@ -373,3 +373,48 @@ docker run -itd --name tmp-ubuntu -v C:\Users\qjy\Desktop\tmp\:/tt ubuntu
 docker run -itd --name test2 -v /home/itcast/tmp/file1.txt:/nihao/nihao.sh ubuntu
 ```
 
+## 3 数据卷容器
+
+​	什么是数据卷容器？ 需要在多个容器之间共享一些持续更新的数据， 简单的方式是使用数据卷容器。数据卷容器也是一个容器，但是它的目的是专门用来提供数据卷供其他容器挂载。
+
+数据卷容器（Data Volume Containers）：使用特定容器维护数据卷简单点：数据卷容器就是为其他容器提供数据交互存储的容器
+
+### 1 数据卷容器实践
+
+创建数据卷
+
+```
+ docker create -v /data-tmp --name v-tmp ubuntu
+ docker create -v [容器数据卷目录] --name [容器名字][镜像名称] [命令(可选)]
+```
+
+创建两个容器同时挂载数据卷
+
+```
+docker run --volumes-from v-tmp -itd --name tmp01 ubuntu
+```
+
+![1700929559731](assets/1700929559731.png)
+
+![1700929978521](assets/1700929978521.png)
+
+![1700930045256](assets/1700930045256.png)
+
+### 2 数据备份
+
+ 1 创建一个挂载数据卷容器的容器 
+
+2 挂载宿主机本地目录作为备份数据卷 
+
+3 将数据卷容器的内容备份到宿主机本地目录挂载的数据卷中 
+
+4 完成备份操作后销毁刚创建的容器
+
+ ![1700932907640](assets/1700932907640.png)
+
+![1700932933853](assets/1700932933853.png)
+
+```
+docker run  --rm  --volumes-from v-tmp -v C:\Users\qjy\Desktop\backup\:/backup/ ubuntu tar zcPf  /backup/data.tar.gz /data-tmp
+```
+
