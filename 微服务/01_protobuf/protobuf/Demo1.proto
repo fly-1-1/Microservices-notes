@@ -1,0 +1,11 @@
+syntax = "proto3" ;
+
+option go_package = "./";
+
+message Test{
+  string name = 1;
+  int32 weight = 2;
+  repeated int32 height = 3;
+  string motto = 4;
+}
+
