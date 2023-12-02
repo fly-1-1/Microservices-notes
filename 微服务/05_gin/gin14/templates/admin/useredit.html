@@ -1,0 +1,20 @@
+{{define "admin/useredit.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/admin/user/doEdit" method="post" enctype="multipart/form-data">
+    用户名<input type="text" name="username">
+    <br><br>
+    头像1<input type="file" name="face1">
+    <br><br>
+    头像2<input type="file" name="face2">
+    <br><br>
+    <input value="提交" type="submit">
+</form>
+</body>
+</html>
+{{end}}
