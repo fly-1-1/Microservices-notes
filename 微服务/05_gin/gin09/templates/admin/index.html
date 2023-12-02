@@ -1,0 +1,43 @@
+{{define "admin/index.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/base.css">
+
+</head>
+<body>
+    <h1>首页</h1>
+
+    <img src="/static/img/img.png">
+
+{{$t :=.title}}
+
+<h1>{{$t}}</h1>
+
+{{if gt .scores 70}}
+<p>成功</p>
+{{end}}
+
+<ul>
+{{range $k,$v:=.hobby}}
+<li>{{$v}}</li>
+{{end}}
+</ul>
+
+
+<ul>
+    {{range $k,$v:=.newsList}}
+    <li>{{$v.Title}}---------{{$v.Content}}</li>
+    {{end}}
+</ul>
+
+结构
+{{with .news}}
+{{.Title}}
+{{.Content}}
+{{end}}
+</body>
+</html>
+{{end}}
