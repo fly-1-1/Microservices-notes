@@ -14,3 +14,5 @@ Microservices notes
 # day06 gin框架
 
 # day07 gin完结 mysql强化复习
+
+# day08 mysql强化
