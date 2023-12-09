@@ -5,9 +5,11 @@ import (
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/redis"
 	"github.com/gin-gonic/gin"
+	"gopkg.in/ini.v1"
 	"html/template"
 	"orm1/models"
 	"orm1/routers"
+	"os"
 )
 
 type UserInfo struct {
@@ -54,6 +56,19 @@ func main() {
 	routers.ApiRoutersInit(r)
 
 	routers.DefaultRoutersInit(r)
+
+	config, err := ini.Load("./conf/app.ini")
+	if err != nil {
+		fmt.Printf("Fail to read file: %v", err)
+		os.Exit(1)
+	}
+
+	fmt.Println(config.Section("").Key("app_name").String())
+	fmt.Println(config.Section("mysql").Key("password").String())
+	fmt.Println(config.Section("redis").Key("ip").String())
+
+	config.Section("").Key("app_name").SetValue("你好gin")
+	config.SaveTo("./conf/app.ini")
 
 	r.Run(":80")
 

@@ -23,5 +23,8 @@ func AdminRoutersInit(r *gin.Engine) {
 
 		adminRouters.GET("/nav", admin.NavController{}.Index)
 
+		adminRouters.GET("/student", admin.StudentController{}.Index)
+
+		adminRouters.GET("/bank", admin.BankController{}.Index)
 	}
 }
