@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+//option go_package = "./proto;userinfo";
+option go_package = "./orderService";
+
+message Order{
+  int64 id = 1;
+  double price = 2;
+  string name = 3;
+  string tel = 4;
+  string address = 5;
+  string addTime = 6;
+  //message 可以嵌套
+  //  message  OrderItem{
+  //    int64 goodsId = 1;
+  //    string title = 2;
+  //    double price = 3;
+  //    int32 num = 4;
+  //  }
+  OrderItem Orderitem = 7;
+}
+
+message  OrderItem{
+  int64 goodsId = 1;
+  string title = 2;
+  double price = 3;
+  int32 num = 4;
+}
+
+
